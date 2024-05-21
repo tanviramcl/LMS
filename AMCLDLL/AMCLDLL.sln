@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMCLDLL", "AMCLDLL\AMCLDLL.csproj", "{A8935DB6-A634-475B-AA71-58A7FF676751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMCLCOMMON", "AMCLCOMMON\AMCLCOMMON.csproj", "{25A40B4A-8AC5-41D9-825B-062DB70A6628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMCLBL", "AMCLBL\AMCLBL.csproj", "{2B7E5EED-4976-470C-B027-2CB8B7835213}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8935DB6-A634-475B-AA71-58A7FF676751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8935DB6-A634-475B-AA71-58A7FF676751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8935DB6-A634-475B-AA71-58A7FF676751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8935DB6-A634-475B-AA71-58A7FF676751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25A40B4A-8AC5-41D9-825B-062DB70A6628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25A40B4A-8AC5-41D9-825B-062DB70A6628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25A40B4A-8AC5-41D9-825B-062DB70A6628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25A40B4A-8AC5-41D9-825B-062DB70A6628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B7E5EED-4976-470C-B027-2CB8B7835213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7E5EED-4976-470C-B027-2CB8B7835213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B7E5EED-4976-470C-B027-2CB8B7835213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7E5EED-4976-470C-B027-2CB8B7835213}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

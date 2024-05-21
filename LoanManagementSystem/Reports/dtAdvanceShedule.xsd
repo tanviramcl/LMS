@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="AdvanceShedule" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AdvanceShedule">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANCE_SCHEDULE_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SCHEDULE_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="INSTALLMENT_AMT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INTEREST_RATE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INTEREST_PAID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CUMULATIVE_INTEREST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PRINCIPAL_PAID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BALANCE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANCE_INIT_DET_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANCE_INIT__ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="PAID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,192 @@
+﻿@model LoanManagementSystem.Models.Employee
+    @{
+        ViewBag.Title = "Loan Information";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    @using LoanManagementSystem.Models;
+    @{
+        List<Employee> EmpLIST = (List<Employee>)ViewBag.EmpLst;
+
+    }
+
+    @*@Html.Partial("_Modal")
+        @Html.Partial("_DialogBox");*@
+
+    <h2>Loan Information</h2>
+   @*<a href="~/Reports/Report.aspx">View Report</a>*@
+    <div><a href="@Url.Action("ExportEmployees")"> Report PDF </a></div> 
+    @*<button type='button' class='btn btn-danger pull-right' onclick="SendUserData();">Change Role</button>*@
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="EmpList" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+
+                                <th>AUTO ID</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Bank Account</th>
+                                <th>Basic</th>
+                                <th>Active</th>
+                                <th>Loan Status</th>
+                                <th>Action Edit</th>
+
+                            </tr>
+                        </thead>
+
+                        @*<tbody>
+                                @foreach (Employee emp in EmpLIST)
+                                {
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>@emp.ID</td>
+                                        <td>@emp.BKACNO.</td>
+                                        <td>@emp.BASIC</td>
+                                        <td>
+                                            <button type="button" id="mod1" class="btn btn-success" data-toggle="modal" href="../Modal/CommonModal?IDN=@emp.ID&Type=EU" data-target="#myModal">
+                                                Edit User
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>*@
+                        <tbody id="SetEmployyeList">
+                            <tr id="LoadingStatus" style="color:red"></tr>
+                        </tbody>
+
+                    </table>
+
+                    @*Create A Popup Modal With Registration Form For Add Or Edit Student Record*@
+
+                    <div class="modal fade" id="MyModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    
+                                    <h4  id="ModalTitle"></h4>
+                                    <a href="#" class="close"   style="margin-right: -29px; margin-top: -18px; opacity: 1;" data-dismiss="modal">&times;</a>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form">
+                                        <fieldset id="SubmitForm">
+                                           
+                                          
+                                            <div class="form-group">
+                                                @Html.Label("AUTOID", " ID")
+                                                @Html.TextBoxFor(m => m.AUTOID, new { @id = "AUTOID", @class = "form-control", @placeholder = "AUTOID*", @readonly = "readonly" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.Label("ID", "Employee ID")
+                                                @Html.TextBoxFor(m => m.ID, new { @id = "ID", @class = "form-control", @placeholder = "Employee ID*" ,@readonly = "readonly" })
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                @Html.Label("BKACNO", "Bank  Acoount ")
+                                                @Html.TextBoxFor(m => m.BKACNO, new { @id = "BKACNO", @class = "form-control", @placeholder = "BKACNO*" ,@readonly = "readonly" })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("BASIC", " Basic")
+                                                @Html.TextBoxFor(m => m.BASIC, new { @id = "BASIC", @class = "form-control", @placeholder = "BASIC*", @readonly = "readonly" })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("TEMP_ADVANCE", " Loan status")
+                                                @Html.TextBoxFor(m => m.TEMP_ADVANCE, new { @id = "TEMP_ADVANCE", @class = "form-control", @placeholder = "Loan status*" })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("VALID", "VALID")
+                                                @Html.DropDownList("VALID", new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{ Text="YES", Value = "Y" },
+                                                   new SelectListItem{ Text="NO", Value = "N" },
+                                                }, new { Class = "form-control", id = "VALID", })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <a href="#" class="btn btn-block btn-danger" id="SaveEmployeeRecord">Save</a>
+                                            </div>
+
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" language="javascript" class="init">
+
+        $("#LoadingStatus").html("Loading....");
+        $.get("/Employee/GetEmployeeList", null, DataBind);
+        function DataBind(EmployeeList) {
+            var SetData = $("#SetEmployyeList");
+            for (var i = 0; i < EmployeeList.length; i++) {
+                var Data = "<tr class='row_" + EmployeeList[i].ID + "'>" +
+                    "<td>" + EmployeeList[i].AUTOID + "</td>" +
+                    "<td>" + EmployeeList[i].ID + "</td>" +
+                    "<td>" + EmployeeList[i].NAME + "</td>" +
+                    "<td>" + EmployeeList[i].BKACNO + "</td>" +
+                    "<td>" + EmployeeList[i].BASIC + "</td>" +
+                    "<td>" + EmployeeList[i].VALID + "</td>" +
+                     "<td>" + EmployeeList[i].TEMP_ADVANCE + "</td>" +
+                    "<td>" + "<a href='#' class='btn btn-warning' onclick='EditEmployeeRecord(" + EmployeeList[i].AUTOID + ")' ><span class='glyphicon glyphicon-edit'></span>Edit</a>" + "</td>" +
+                    "</tr>";
+                SetData.append(Data);
+                $("#LoadingStatus").html(" ");
+
+            }
+        }
+
+        //  $('#EmpList').DataTable();
+
+        //Show The Popup Modal For Edit Student Record
+
+        function EditEmployeeRecord(AUTOID) {
+
+            //alert(AUTOID);
+            var url = "/Employee/GetEmployeetById?AUTOID=" + AUTOID;
+            $("#ModalTitle").html("Update Employee Record");
+            $("#MyModal").modal();
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    $("#AUTOID").val(obj.AUTOID);
+                    $("#ID").val(obj.ID);
+                    $("#BKACNO").val(obj.BKACNO);
+                    $("#BASIC").val(obj.BASIC);
+                    $("#TEMP_ADVANCE").val(obj.TEMP_ADVANCE);
+                    $("#VALID").val(obj.VALID);
+                    
+
+                }
+            })
+        }
+
+        $("#SaveEmployeeRecord").click(function () {
+            var data = $("#SubmitForm").serialize();
+            $.ajax({
+                type: "Post",
+                url: "/Employee/SaveDataInDatabase",
+                data: data,
+                success: function (result) {
+                    alert("successfully updated");
+                    window.location.href = "/Employee/index";
+                    $("#MyModal").modal("hide");
+
+                }
+            })
+        })
+
+    </script>

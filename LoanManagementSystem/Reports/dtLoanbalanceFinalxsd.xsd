@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="LoanbalanceFinal" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LoanbalanceFinal">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DISBURSED_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="DISBURSED_AMT" type="xs:double" minOccurs="0" />
+              <xs:element name="DISBURSED_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="LOAN_STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="TOTAL_INTEREST_AMT" type="xs:double" minOccurs="0" />
+              <xs:element name="NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="DESIGNATION" type="xs:string" minOccurs="0" />
+              <xs:element name="PRINCIPAL" type="xs:double" minOccurs="0" />
+              <xs:element name="INTEREST" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

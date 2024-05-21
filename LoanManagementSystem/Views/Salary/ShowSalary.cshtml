@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "ShowSalary";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using LoanManagementSystem.Models;
+@{
+// List<SalaryDetails> emPLaslaryList = (List<SalaryDetails>)ViewBag.empSalary_LIST;
+
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+         </div>
+   </div>
+</div>
+
+
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- basic table  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+
+                            <table id="SalaryDetails" class="table table-striped table-bordered" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>CaL Date</th>
+                                        <th>Autoid</th>
+                                        <th>ID</th>
+                                        <th>Basic</th>
+                                        <th>House rent</th>
+                                        <th>Medical Allowance</th>
+                                        <th>Convance Allowance</th>
+                                        <th>PF Pension Corporation</th>
+                                        <th>Pension Contribution Corporation </th>
+                                        <th>PF Contribution Corporation </th>
+                                        <th>PF Contribution Own</th>
+                                        <th>PF Loan</th>
+                                        <th>Association Loan</th>
+                                        <th>Staff Buss</th>
+                                        <th>Entertainment</th>
+                                        <th>EMP. BEN. FUND</th>
+                                        <th>Wash Allowance </th>
+                                        <th>Deduct</th>
+                                        <th>P_PAY</th>
+                                        <th>Utilities</th>
+                                        <th>Rev. Stamp</th>
+                                        <th>Telephone</th>
+                                        <th>Income tax</th>
+                                        <th>Previous income tax</th>
+                                        <th>GI_PREM</th>
+                                        <th>Others</th>
+                                        <th>Advance Amount</th>
+                                        <th>Dep allow</th>
+                                        <th>Child Education  allow</th>
+                                        <th>Area</th>
+                                        <th>Total Deduct</th>
+                                        <th>Gross total</th>
+                                        <th>Gross total with allow.</th>
+                                        <th>Net Payable</th>
+                                        <th>Net payable with allow</th>
+                                        <th>Net allowance</th>
+                                       
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.empSalary_LIST != null)
+                                    {
+                                        foreach (SalaryDetails empSal in ViewBag.empSalary_LIST)
+                                        {
+                                            <tr>
+                                                <td align="center"> @empSal.CAL_DATE.ToString("dd/MM/yyyy")</td>
+                                                <td align="center"> @empSal.AUTOID</td>
+                                                <td align="center"> @empSal.ID</td>
+                                                <td align="center"> @empSal.BASIC</td>
+                                                <td align="center"> @empSal.HOUSE_RENT</td>
+                                                <td align="center"> @empSal.MED_ALLOW</td>
+                                                <td align="center"> @empSal.CONV_ALLOW</td>
+                                                <td align="center"> @empSal.PF_PN_COR</td>
+                                                <td align="center"> @empSal.PENSION_CONTR_COR</td>
+                                                <td align="center"> @empSal.PF_CONTR_COR</td>
+                                                <td align="center"> @empSal.PF_CONTR_OWN</td>
+                                                <td align="center"> @empSal.PF_LOAN</td>
+                                                <td align="center"> @empSal.OFF_ASS_SUB</td>
+                                                <td align="center"> @empSal.STAFF_BUS</td>
+                                                <td align="center"> @empSal.ENTERTAINMENT</td>
+                                                <td align="center"> @empSal.EMP_BEN_FUND</td>
+                                                <td align="center"> @empSal.WASH_ALLOWS</td>
+                                                <td align="center"> @empSal.DEDUCT</td>
+                                                <td align="center"> @empSal.P_PAY</td>
+                                                <td align="center"> @empSal.UTILITIES</td>
+                                                <td align="center"> @empSal.REV_STAMP</td>
+                                                <td align="center"> @empSal.TELEPHONE</td>
+                                                <td align="center"> @empSal.INCOME_TAX</td>
+                                                <td align="center"> @empSal.PREVIOUS_INCOME_TAX</td>
+                                                <td align="center"> @empSal.GI_PREM</td>
+                                                <td align="center"> @empSal.OTHERS</td>
+                                                <td align="center"> @empSal.TEMP_ADVANCE</td>
+                                                <td align="center"> @empSal.DEP_ALLOW</td>
+                                                <td align="center"> @empSal.CHILD_EDU_ALLOW</td>
+                                                <td align="center"> @empSal.AREA</td>
+                                                <td align="center"> @empSal.TOTAL_DEDUCT</td>
+                                                <td align="center"> @empSal.GROSS_TOTAL</td>
+                                                <td align="center"> @empSal.GROSS_TOTAL_WITH_ALLOW</td>
+                                                <td align="center"> @empSal.NET_PAYABLE</td>
+                                                <td align="center"> @empSal.NET_PAYABLE_WITH_ALLOW</td>
+                                                <td align="center"> @empSal.NET_ALLOWANCE</td>
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $('#SalaryDetails').DataTable();
+
+
+
+        </script>
+
+

@@ -1,0 +1,143 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtCopyForMainRpt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DISBURSED_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DISBURSED_AMT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DISBURSED_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="INSTALLMENT_AMT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTAL_PRINCIPAL_AMT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTAL_INTEREST_AMT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INT_RATE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INT_RATE_PREVIOUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NO_OF_INSTALLMENT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NO_OF_YEAR" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TIMES_OF_LOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="LOAN_STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="ADVANCE_INIT_DET_ACTIVATE" type="xs:string" minOccurs="0" />
+              <xs:element name="QCSJ_C000000000600000" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANVE_INIT_DET_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="QCSJ_C000000000800000" type="xs:string" minOccurs="0" />
+              <xs:element name="SCHEDULE_GENARATE_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SHEDULE_GENARATE" type="xs:string" minOccurs="0" />
+              <xs:element name="RESCHEDULED" type="xs:string" minOccurs="0" />
+              <xs:element name="QCSJ_C000000000600001" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANVE_INIT_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="EMPLOYEE_JOIN_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EMPLOYEE_RETIRE_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EMPLOYEE_BASIC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BANK_ACCOUNT" type="xs:string" minOccurs="0" />
+              <xs:element name="ADVANVE_ACTIVATE" type="xs:string" minOccurs="0" />
+              <xs:element name="ADVANCE_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EMPLOYEE_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="AVD_INT_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="QCSJ_C000000000800001" type="xs:string" minOccurs="0" />
+              <xs:element name="RANK" type="xs:string" minOccurs="0" />
+              <xs:element name="NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="ADDR" type="xs:string" minOccurs="0" />
+              <xs:element name="ADDR2" type="xs:string" minOccurs="0" />
+              <xs:element name="SEX" type="xs:string" minOccurs="0" />
+              <xs:element name="BDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TEL" type="xs:string" minOccurs="0" />
+              <xs:element name="JDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BASIC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SCHEME" type="xs:string" minOccurs="0" />
+              <xs:element name="ISCOMP" type="xs:string" minOccurs="0" />
+              <xs:element name="PFLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="HBLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="CMCLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="ASSOLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="BKACNO" type="xs:string" minOccurs="0" />
+              <xs:element name="BKNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BKBNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="REM" type="xs:string" minOccurs="0" />
+              <xs:element name="OLD_BASIC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VALID" type="xs:string" minOccurs="0" />
+              <xs:element name="TEMP_ADVANCE" type="xs:string" minOccurs="0" />
+              <xs:element name="SENIORITY" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ICB_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="OLD_BKACNO" type="xs:string" minOccurs="0" />
+              <xs:element name="BINC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NO_CHILD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MACHIN_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DESIG_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DEPT_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DEPT_HEAD_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="DEPT_HEAD_NM" type="xs:string" minOccurs="0" />
+              <xs:element name="ISBANKINFO" type="xs:string" minOccurs="0" />
+              <xs:element name="PRE_ADDR_DIST" type="xs:string" minOccurs="0" />
+              <xs:element name="PRE_ADDR_PS" type="xs:string" minOccurs="0" />
+              <xs:element name="PRE_ADDR_POST_OFF" type="xs:string" minOccurs="0" />
+              <xs:element name="PRE_ADDR_POST_CODE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAR_ADDR1" type="xs:string" minOccurs="0" />
+              <xs:element name="PAR_ADDR2" type="xs:string" minOccurs="0" />
+              <xs:element name="FATHER_NM" type="xs:string" minOccurs="0" />
+              <xs:element name="MOTHER_NM" type="xs:string" minOccurs="0" />
+              <xs:element name="BLOOD_GP" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CONTRACT_NO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RELIGION" type="xs:string" minOccurs="0" />
+              <xs:element name="NID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="M_STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="EMAIL" type="xs:string" minOccurs="0" />
+              <xs:element name="TIN_CERT_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="BIRTH_CERT_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="PASSP_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="EMP_TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="ENTRY_BY" type="xs:string" minOccurs="0" />
+              <xs:element name="ENTRY_DT_TIME" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="REMARKS" type="xs:string" minOccurs="0" />
+              <xs:element name="EMP_SUPOSE_NM" type="xs:string" minOccurs="0" />
+              <xs:element name="EMP_SPOUSE_NM" type="xs:string" minOccurs="0" />
+              <xs:element name="DEPARTMENT" type="xs:string" minOccurs="0" />
+              <xs:element name="DEPARTMENT_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="DESIGNATION" type="xs:string" minOccurs="0" />
+              <xs:element name="NATIONALITY" type="xs:string" minOccurs="0" />
+              <xs:element name="BIKE_LOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="ROUTING_NO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BANK_ADDRESS" type="xs:string" minOccurs="0" />
+              <xs:element name="PAR_ADDR_DIST" type="xs:string" minOccurs="0" />
+              <xs:element name="PAR_ADDR_PS" type="xs:string" minOccurs="0" />
+              <xs:element name="PAR_ADDR_POST_OFF" type="xs:string" minOccurs="0" />
+              <xs:element name="PAR_ADDR_POST_CODE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GRADE" type="xs:string" minOccurs="0" />
+              <xs:element name="SPF_CONTR_OWN" type="xs:string" minOccurs="0" />
+              <xs:element name="F_FIGHTER" type="xs:string" minOccurs="0" />
+              <xs:element name="ANS_VDP" type="xs:string" minOccurs="0" />
+              <xs:element name="P_HANDICAPPED" type="xs:string" minOccurs="0" />
+              <xs:element name="E_MINORITY" type="xs:string" minOccurs="0" />
+              <xs:element name="EMP_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="RT_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MBLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="SPF_CONTR" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AUTOID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DESIG" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtCopyForSubRpt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANCE_SCHEDULE_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SCHEDULE_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="INSTALLMENT_AMT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INTEREST_RATE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INTEREST_PAID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CUMULATIVE_INTEREST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PRINCIPAL_PAID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BALANCE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANCE_INIT_DET_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADVANCE_INIT__ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="PAID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

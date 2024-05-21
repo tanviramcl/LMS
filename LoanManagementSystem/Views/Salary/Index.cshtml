@@ -1,0 +1,140 @@
+﻿@model LoanManagementSystem.Models.Salary
+@{
+    ViewBag.Title = "Advance  Initialization";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*Create A Popup Modal With Registration Form For Add Or Edit Student Record*@
+<link type="text/css" href="~/Content/Ajaxloder.css" rel="stylesheet" />
+<script src="~/scripts/jquery.validate.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+
+<form id="form_AVD_int">
+    <fieldset id="SubmitForm">
+
+
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("FromDate", "From Date")
+                @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @id = "FromDate", @class = "form-control", @placeholder = "From Date*" } })
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("ToDate", "To Date")
+                @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @id = "ToDate", @class = "form-control", @placeholder = "To Date*" } })
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                @Html.Label("CaLDate", "Calculation Date")
+                @Html.EditorFor(model => model.CaLDate, new { htmlAttributes = new { @id = "CaLDate", @class = "form-control", @placeholder = "Calculation Date*" } })
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                @*<a href="#" class="btn btn-primary" id="SaveAvd_int_Record">Save</a>*@
+                <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+        </div>
+
+
+    </fieldset>
+</form>
+
+
+<div class="container" style="display:none;">
+    <img src="~/Content/Images/AjaxLoader.gif" class="loader">
+</div>
+
+<script type="text/javascript">
+
+
+
+    $("#form_AVD_int").validate({
+        submitHandler: function () {
+
+            Submit();
+        },
+        rules: {
+
+            FromDate: {
+                required: true,
+
+            },
+            ToDate: {
+                required: true,
+
+            },
+            CaLDate: {
+                required: true,
+
+            }
+
+        },
+        messages: {
+
+        }
+    });
+    function Submit() {
+
+            var jsonObjU = [];
+
+            var FromDate = $("#FromDate").val();
+            var ToDate = $("#ToDate").val();
+            var CaLDate = $("#CaLDate").val();
+
+
+
+
+            var itemU = {};
+
+            itemU["FromDate"] = FromDate;
+            itemU["ToDate"] = ToDate;
+            itemU["CaLDate"] = CaLDate;
+
+
+
+            jsonObjU.push(itemU);
+            $(".container").show();
+            $.ajax({
+
+                url: '/Salary/Process',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                cache: false,
+                data: JSON.stringify({ SalaryDet: JSON.stringify(jsonObjU) }),
+                success: function (s) {
+                    $(".container").hide();
+                    if (s = "Success") {
+                        window.location.href = "/Salary/ShowSalary";
+                    }
+                    else
+                    {
+                        alert(s);
+                    }
+
+
+                }
+            });
+
+
+
+
+
+
+
+
+    }
+
+
+
+</script>

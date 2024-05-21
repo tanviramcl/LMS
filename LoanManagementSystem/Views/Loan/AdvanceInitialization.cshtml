@@ -1,0 +1,103 @@
+﻿@model LoanManagementSystem.Models.AdvanceInitialization
+@{
+    ViewBag.Title = "Advance  Initialization";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using LoanManagementSystem.Models;
+@{
+    List<AdvanceInitialization> EmpLIST = (List<AdvanceInitialization>)ViewBag.AdvanceInitialization_list;
+
+}
+
+<h2>Advance  Initialization</h2>
+
+<div id="partialDiv">
+    @Html.Partial("Modal/_AdvanceInitialization")
+
+</div>
+
+<div class="row">
+
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+        <a href="#" class="btn btn-info" onclick="AddAdvanceInitialization('0')">Add New Initialization</a> <br /><br />
+
+    </div>
+</div>
+<div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <table id="Avd_int" class="table table-striped table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>ADVANCE_INIT_ID</th>
+                                <th>ADVANCE_INIT_NAME</th>
+                                <th>JOIN DATE</th>
+                                <th>RETIRE Date</th>
+                                <th>Basic</th>
+                                <th>ADVANVE_INIT_ID </th>
+                                <th>ADVANVE_ACTIVATE</th>
+                                <th>ADVANCE_ID</th>
+                                <th>EMPLOYEE_ID</th>
+                                <th>Initial Date</th>
+                                <th>OFFICE ID</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (AdvanceInitialization avd_intialization in ViewBag.AdvanceInitialization_list)
+                            {
+                                <tr>
+                                    <td align="center"> @avd_intialization.ADVANCE_INIT_ID</td>
+                                    <td align="center"> @avd_intialization.ADVANVE_INIT_NAME</td>
+                                    <td align="center"> @avd_intialization.EMPLOYEE_JOIN_DATE.ToShortDateString()</td>
+                                    <td align="center"> @avd_intialization.EMPLOYEE_RETIRE_DATE.ToShortDateString()</td>
+                                    <td align="center"> @avd_intialization.EMPLOYEE_BASIC</td>
+                                    <td align="center"> @avd_intialization.ADVANCE_INIT_ID</td>
+                                    <td align="center"> @avd_intialization.ADVANVE_ACTIVATE</td>
+                                    <td align="center"> @avd_intialization.ADVANCE_ID</td>
+                                    <td align="center"> @avd_intialization.EMPLOYEE_ID</td>
+                                    <td align="center"> @avd_intialization.AVD_INT_DATE.ToShortDateString()</td>
+                                    <td align="center"> @avd_intialization.OFFICE_ID</td>
+                                    <td><a href='#' class='btn btn-warning' onclick='ADVANVE_INIT(@avd_intialization.ADVANCE_INIT_ID)'><span class='glyphicon glyphicon-edit'></span>Edit</a></td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#Avd_int').DataTable();
+
+
+    function AddAdvanceInitialization(ADVANCE_INIT_ID) {
+      
+        $("#ModalTitle").html("Add New Intialization");
+        $("#MyModal").modal();
+
+    }
+
+    function ADVANVE_INIT(ADVANVE_INIT_ID) {
+
+        alert(ADVANVE_INIT_ID);
+
+    }
+</script>
+

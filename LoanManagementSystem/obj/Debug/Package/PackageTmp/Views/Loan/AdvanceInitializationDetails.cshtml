@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Advance Initialization Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@using LoanManagementSystem.Models;
+@{
+    List<Advance_initialization_details> advanceInitializationDetails_LIST = (List<Advance_initialization_details>)ViewBag.advanceInitializationDetails_LIST;
+
+}
+
+<h2>Advance Initialization Details</h2>
+
+<div id="partialDiv">
+    @Html.Partial("Modal/_AdvanceInitializationDetails")
+
+</div>
+
+@*<div id="partialDiv">
+    @Html.Partial("Modal/_EditAdvanceInitializationDetails")
+
+</div>*@
+<div class="row">
+
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+        <a href="#" class="btn btn-info" onclick="AddAdvanceInitializationDetails('0')">Add New Advance</a> <br /><br />
+
+    </div>
+</div><div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <table id="Avd_int_det" class="table table-striped table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Loan ID</th>
+                                <th>Adv. Initial Details Id</th>
+                                <th>Employee ID</th>
+                                <th>Employee Name</th>
+                                <th>Employee Rank</th>
+                                <th>Disbursed Amount</th>
+                                <th>Disbursed date</th>
+                                <th>Installment Amount</th>
+                                <th>Total Principal Amount</th>
+                                <th>Total Interest Amount </th>
+                                <th>Interest Rate</th>
+                                <th>No of Installment</th>
+                                <th>Times Of Loan</th>
+                                <th>Loan Status</th>
+                                <th>Advance Int. Det. Active</th>
+                                <th>Advance Int. Id</th>
+                                <th>Advance Int. Det. Date</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ( Advance_initialization_details avvanceIntDetails in ViewBag.advanceInitializationDetails_LIST)
+                            {
+                                <tr>
+                                    <td align="center"> @avvanceIntDetails.LOAN_ID</td>
+                                    <td align="center"> @avvanceIntDetails.DISBURSED_ID</td>
+                                    <td align="center"> @avvanceIntDetails.EMPLOYEE_ID</td>
+                                    <td align="center"> @avvanceIntDetails.NAME</td>
+                                    <td align="center"> @avvanceIntDetails.RANK</td>
+                                    <td align="center"> @avvanceIntDetails.DISBURSED_AMT</td>
+                                    <td align="center"> @avvanceIntDetails.DISBURSED_DATE.ToShortDateString()</td>
+                                    <td align="center"> @avvanceIntDetails.INSTALLMENT_AMT</td>
+                                    <td align="center"> @avvanceIntDetails.TOTAL_PRINCIPAL_AMT</td>
+                                    <td align="center"> @avvanceIntDetails.TOTAL_INTEREST_AMT</td>
+                                    <td align="center"> @avvanceIntDetails.INT_RATE</td>
+                                    <td align="center"> @avvanceIntDetails.NO_OF_INSTALLMENT</td>
+                                    <td align="center"> @avvanceIntDetails.TIMES_OF_LOAN</td>
+                                    <td align="center"> @avvanceIntDetails.LOAN_STATUS</td>
+                                    <td align="center"> @avvanceIntDetails.ADVANCE_INIT_DET_ACTIVATE</td>
+                                    <td align="center"> @avvanceIntDetails.ADVANCE_INIT_ID</td>
+                                    <td align="center"> @avvanceIntDetails.ADVANVE_INIT_DET_DATE.ToShortDateString()</td>
+                                    <td><a href='#' class='btn btn-warning' onclick='ADVANVE_INIT(@avvanceIntDetails.DISBURSED_ID)'><span class='glyphicon glyphicon-edit'></span>Edit</a></td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#Avd_int_det').DataTable();
+
+    function AddAdvanceInitializationDetails(ADVANCE_INIT_DET_ID) {
+        $("#form_AVD_int_details")[0].reset();
+        $("#ModalTitle").html("Add New Advance");
+        $("#MyModal").modal();
+
+    }
+
+    function ADVANVE_INIT(DISBURSED_ID) {
+        $("#UpdateModalTitle").html(" Update Advance Details");
+        $("#MyModal").modal();
+
+        var url = "/LoansShedule/GetAdvIntializationDetailstById?Id=" + DISBURSED_ID;
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#ddlAdvanceInt").val(obj.ADVANCE_INIT_ID);
+                $("#EMPLOYEE_ID").val(obj.EMPLOYEE_ID);
+                $("#DISBURSED_ID").val(obj.DISBURSED_ID);
+                $("#LOAN_ID").val(obj.LOAN_ID);
+                $("#DISBURSED_AMT").val(obj.DISBURSED_AMT);
+                //var date = new Date(parseInt(obj.DISBURSED_DATE.substr(6)));
+                var d = new Date(obj.DISBURSED_DATE);
+                var day = ("0" + d.getDate()).slice(-2);
+                var month = ("0" + (d.getMonth() + 1)).slice(-2);
+                var today = d.getFullYear() + "-" + (month) + "-" + (day);
+               // alert(today);  
+                $("#DISBURSED_DATE").val(today);
+                $("#INSTALLMENT_AMT").val(obj.INSTALLMENT_AMT);
+                $("#INT_RATE").val(obj.INT_RATE);
+                $("#NO_OF_YEAR").val(obj.NO_OF_YEAR);
+                $("#NO_OF_INSTALLMENT").val(obj.NO_OF_INSTALLMENT);
+                $("#TIMES_OF_LOAN").val(obj.TIMES_OF_LOAN);
+                $("#LOAN_STATUS").val(obj.LOAN_STATUS);
+               
+             
+
+            }
+        })
+
+    }
+
+</script>

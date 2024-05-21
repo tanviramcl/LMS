@@ -1,0 +1,45 @@
+﻿@model LoanManagementSystem.Models.Employee
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Genarate Shedule</h2>
+
+<div class="row">
+    <form id="aspnetForm"  method="post">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+            <label for="inputDefault" class="col-form-label">Employee List:</label>
+            @Html.DropDownListFor(m => m.ID, new SelectList(ViewBag.EmpLst, "ID", "NAME"), "---Select Employee---", new { Class = "form-control", id = "ddlEmployee" })
+        </div>
+    </form>
+</div>
+<div id="partialDiv">
+    @Html.Partial("_EmployeePartial")
+
+</div> 
+<script type="text/javascript" language="javascript" class="init">
+    $(document).ready(function()
+    {
+        $("#ddlEmployee").on("change", function ()
+        {
+           // alert($("#ddlEmployee").val());
+
+            $.ajax(
+            {
+                url: '/Loan/GetEmployeeRecord?ID=' + $("#ddlEmployee").val(),
+                type: 'GET',
+                data: "",
+                contentType: 'application/json; charset=utf-8',
+                success: function(data)
+                {
+                    $("#partialDiv").html(data);
+                },
+                error: function()
+                {
+                    alert("error");
+                }
+            });
+        });
+    });
+</script>

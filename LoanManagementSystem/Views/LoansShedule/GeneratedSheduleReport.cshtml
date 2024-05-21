@@ -1,0 +1,30 @@
+﻿@model LoanManagementSystem.Models.Advance_initialization_details
+@{
+    ViewBag.Title = "GeneratedSheduleReport";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Generated Shedule Report</h2>
+
+<div class="row">
+    <form id="form_AVD_Shedule" action="ExportAdvanceShedule" method="post">
+
+        <div class="form-group">
+            @Html.Label("DISBURSED_ID", "LOAN ID")
+            @Html.DropDownListFor(m => m.LOAN_ID, new SelectList(ViewBag.advINTDet, "LOAN_ID", "LOAN_ID"), "---Select Disburse---", new { Class = "form-control", id = "LOAN_ID", name= "LOAN_ID" })
+        </div>
+        <div class="form-row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+               
+                @*<a href="@Url.Action("ExportAdvanceShedule")"> Report PDF </a>*@
+                <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+   
+
+
+  
+</script>

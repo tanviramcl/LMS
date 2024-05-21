@@ -1,0 +1,96 @@
+﻿@model LoanManagementSystem.Models.EarlySatlement
+@{
+    ViewBag.Title = "EarlySatlement";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Early Satlement List</h2>
+
+
+@using LoanManagementSystem.Models;
+@{
+    List<EarlySatlement> earlySatlementListn_list = (List<EarlySatlement>)ViewBag.earlySatlementListn_list;
+
+}
+
+<div id="partialDiv">
+    @Html.Partial("Modal/_EarlySatlement")
+
+</div>
+
+<div class="row">
+
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+        <a href="#" class="btn btn-info" onclick="AddEarlySatlement('0')">Add New EarlySatlement</a> <br /><br />
+
+    </div>
+</div>
+<div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <table id="Avd_int" class="table table-striped table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>EARLY SATALEMENT ID</th>
+                                <th>LOAN ID</th>
+                                <th>DUE PRINCIPAL</th>
+                                <th>DUE INTEREST</th>
+                                <th>EARLY SATALEMENT DATE </th>
+                                <th>CHECK NO</th>
+                                <th>EMPLOYEE_ID</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EarlySatlement earlySatlement in ViewBag.earlySatlementListn_list)
+                            {
+                                <tr>
+                                    <td align="center"> @earlySatlement.ADVANCE_EARLY_SATALEMENT_ID</td>
+                                    <td align="center"> @earlySatlement.LOAN_ID</td>
+                                    <td align="center"> @earlySatlement.DUE_PRINCIPAL</td>
+                                    <td align="center"> @earlySatlement.DUE_INTEREST</td>
+                                    <td align="center"> @earlySatlement.EARLY_SATALEMENT_DATE.ToShortDateString()</td>
+                                    <td align="center"> @earlySatlement.EMPLOYEE_ID</td>
+                                    <td align="center"> @earlySatlement.CHECK_NO</td>
+                                    <td><a href='#' class='btn btn-warning' onclick='ADVANVE_INIT(@earlySatlement.ADVANCE_EARLY_SATALEMENT_ID)'><span class='glyphicon glyphicon-edit'></span>Edit</a></td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#Avd_int').DataTable();
+
+
+    function AddEarlySatlement(ADVANCE_INIT_ID) {
+
+        $("#ModalTitle").html("Add New EarlySatlement");
+        $("#MyModal").modal();
+
+    }
+
+    function ADVANVE_INIT(ADVANCE_EARLY_SATALEMENT_ID) {
+
+        alert(ADVANCE_EARLY_SATALEMENT_ID);
+
+    }
+</script>
+

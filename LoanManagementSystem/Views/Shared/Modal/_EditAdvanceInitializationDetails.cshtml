@@ -1,0 +1,262 @@
+﻿@model LoanManagementSystem.Models.Advance_initialization_details
+
+
+@*Create A Popup Modal With Registration Form For Add Or Edit Student Record*@
+    <script src="~/scripts/jquery.validate.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <div class="modal fade" id="EditMyModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 id="UpdateModalTitle"></h4>
+                    <a href="#" class="close" style="margin-right: -29px; margin-top: -18px; opacity: 1;" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <form id="UPdate_AVD_int_details">
+                        <fieldset id="SubmitForm">
+                            <div class="form-group">
+                                @Html.Label("NAME", "NAME")
+                                @Html.TextBoxFor(m => m.NAME, new { @id = "NAME", @class = "form-control", @placeholder = "NAME*", @readonly = "readonly" })
+                            </div>
+                         
+                            <div class="form-group">
+                                @Html.Label("EMPLOYEE_ID", "Employee ID")
+                                @Html.TextBoxFor(m => m.EMPLOYEE_ID, new { @id = "ID", @class = "form-control", @placeholder = "ID*", @readonly = "readonly" })
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("LOAN_ID", "LOAN ID")
+                                @Html.TextBoxFor(m => m.LOAN_ID, new { @id = "L_ID", @class = "form-control", @placeholder = "LOAN_ID*", @readonly = "readonly" })
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    @Html.Label("DISBURSED_ID", "DISBURSED ID")
+                                    @Html.TextBoxFor(m => m.DISBURSED_ID, new { @id = "D_ID", @class = "form-control", @placeholder = "DISBURSED ID*", @readonly = "readonly" })
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("DISBURSED_AMT", "Disbursed amount")
+                                    @Html.EditorFor(model => model.DISBURSED_AMT, new { htmlAttributes = new { @id = "D_AMT", @class = "form-control", @placeholder = "Disbursed amount*" } })
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("DISBURSED_DATE", "Disbursed Date")
+                                    @Html.EditorFor(model => model.DISBURSED_DATE, new { htmlAttributes = new { @id = "D_DATE", @class = "form-control", @placeholder = "Disbursed Date*" } })
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("INSTALLMENT_AMT", "Installment Amount")
+                                    @Html.TextBoxFor(m => m.INSTALLMENT_AMT, new { @id = "I_AMT", @class = "form-control", @placeholder = "Installment Amount*" })
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("INT_RATE", "Interest Rate")
+                                    @Html.EditorFor(model => model.INT_RATE, new { htmlAttributes = new { @id = "I_RATE", @class = "form-control", @placeholder = "Interest Rate*" } })
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("NO_OF_YEAR", "No of year")
+                                    @Html.EditorFor(model => model.NO_OF_YEAR, new { htmlAttributes = new { @id = "UP_NO_OF_YEAR", @class = "form-control", @placeholder = "No of year*" } })
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("NO_OF_INSTALLMENT", "No of Installment")
+                                    @Html.TextBoxFor(m => m.NO_OF_INSTALLMENT, new { @id = "UP_NO_OF_INSTALLMENT", @class = "form-control", @placeholder = "No of Installment*" })
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("TIMES_OF_LOAN", "Times of loan")
+                                    @Html.DropDownList("TIMES_OF_LOAN", new List<SelectListItem>
+                            {
+                               new SelectListItem{ Text="First Time", Value = "1" },
+                               new SelectListItem{ Text="Second Time", Value = "2" },
+                               new SelectListItem{ Text="Third Time", Value = "3" },
+                            }, new { Class = "form-control", id = "UP_TIMES_OF_LOAN", })
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("LOAN_STATUS", "Loan Status")
+                                    @Html.DropDownList("LOAN_STATUS", new List<SelectListItem>
+                            {
+                               new SelectListItem{ Text="Active", Value = "Active" },
+                               new SelectListItem{ Text="Inactive", Value = "Inactive" },
+                               new SelectListItem{ Text="Close", Value = "Close" },
+                            }, new { Class = "form-control", id = "UP_LOAN_STATUS", })
+                                </div>
+                                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    @Html.Label("CLOSE_DATE", "Close Date")
+                                    @Html.EditorFor(model => model.CLOSE_DATE, new { htmlAttributes = new { @id = "CLOSE_DATE", @class = "form-control", @placeholder = "Close Date*" } })
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                    @*<a href="#" class="btn btn-primary" id="SaveAvd_int_Record">Save</a>*@
+                                    <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                            </div>
+
+
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        
+
+
+        $.validator.addMethod("TIMES_OF_LOAN", function (value, element, param) {
+            if (value == '0')
+                return false;
+            else
+                return true;
+        }, "Please select Times of Loan.");
+
+     
+   
+
+        $("#UPdate_AVD_int_details").validate({
+            submitHandler: function () {
+
+                Submit();
+            },
+            rules: {    
+                D_AMT: {
+                    required: true,
+                    number:true
+
+                },
+                D_DATE: {
+                    required: true
+                },
+                I_AMT: {
+                    required: true,
+                    number:true
+
+                },
+                I_RATE: {
+                    required: true,
+                    number:true
+
+                },
+                UP_NO_OF_YEAR: {
+                    required: true,
+
+                },
+                UP_NO_OF_INSTALLMENT: {
+                    required: true,
+
+                },
+                TIMES_OF_LOAN: {
+                    TIMES_OF_LOAN: true,
+
+                }
+
+            },
+            messages: {
+                D_AMT: {
+                    required: "Please enter Disbursed amount "
+                },
+                D_DATE: {
+                    required: "Please enter Disbursed date "
+                }
+
+            }
+        });
+        function Submit() {
+         
+                var jsonObjU = [];
+                
+                var DISBURSED_ID = $("#D_ID").val();
+                var EMPLOYEE_ID = $("#ID").val();
+                var DISBURSED_AMT = $("#D_AMT").val();
+                var DISBURSED_DATE = $("#D_DATE").val();
+                var INSTALLMENT_AMT = $("#I_AMT").val();
+                var NO_OF_INSTALLMENT = $("#UP_NO_OF_INSTALLMENT").val();
+                var INT_RATE = $("#I_RATE").val();
+                var NO_OF_YEAR = $("#UP_NO_OF_YEAR").val();
+                var TIMES_OF_LOAN = $("#UP_TIMES_OF_LOAN").val();
+                var LOAN_STATUS = $("#UP_LOAN_STATUS").val();
+                var LOAN_ID = $("#L_ID").val();
+                var CLOSE_DATE = $("#CLOSE_DATE").val();
+
+                if (DISBURSED_DATE == "") {
+                    alert("Please Select DISBURSED DATE");
+                }
+                else
+                {
+                    var itemU = {};
+
+                    itemU["DISBURSED_ID"] = DISBURSED_ID;
+                    itemU["EMPLOYEE_ID"] = EMPLOYEE_ID;
+                    itemU["DISBURSED_AMT"] = DISBURSED_AMT;
+                    itemU["DISBURSED_DATE"] = DISBURSED_DATE;
+                    itemU["INSTALLMENT_AMT"] = INSTALLMENT_AMT;
+                    itemU["NO_OF_INSTALLMENT"] = NO_OF_INSTALLMENT;
+                    itemU["INT_RATE"] = INT_RATE;
+                    itemU["NO_OF_YEAR"] = NO_OF_YEAR;
+                    itemU["TIMES_OF_LOAN"] = TIMES_OF_LOAN;
+                    itemU["LOAN_STATUS"] = LOAN_STATUS;
+                    itemU["LOAN_ID"] = LOAN_ID;
+                    itemU["CLOSE_DATE"] = CLOSE_DATE;
+
+
+                    jsonObjU.push(itemU);
+
+                    $.ajax({
+
+                        url: '/Loan/UpdateAdvanceInitializationDetails',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        cache: false,
+                        data: JSON.stringify({ AvdIntDetails: JSON.stringify(jsonObjU) }),
+                        success: function (s) {
+
+                            if (s == "Success") {
+                                alert(s);
+                                window.location.href = "/Home/index";
+                                $("#EditMyModal").modal("hide");
+                            }
+                            else {
+
+                                alert("Error");
+                            }
+                        }
+                    });
+
+                }
+
+
+
+             
+
+           
+
+
+
+        }
+
+
+        //$("#SaveAvd_int_Record").click(function () {
+        //    alert();
+        //    var data = $("#SubmitForm").serialize();
+        //    $.ajax({
+        //        type: "Post",
+        //        url: "/Loan/AddAdvanceInitialization",
+        //        data: data,
+        //        success: function (result) {
+        //            alert("Success!..");
+        //            window.location.href = "/Home/index";
+        //            $("#MyModal").modal("hide");
+
+        //        }
+        //    })
+        //})
+    </script>
+

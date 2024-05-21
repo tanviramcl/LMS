@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="EmployeeList" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EmployeeList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="RANK" type="xs:string" minOccurs="0" />
+              <xs:element name="NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="ADDR" type="xs:string" minOccurs="0" />
+              <xs:element name="ADDR2" type="xs:string" minOccurs="0" />
+              <xs:element name="SEX" type="xs:string" minOccurs="0" />
+              <xs:element name="BDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="TEL" type="xs:string" minOccurs="0" />
+              <xs:element name="JDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="BASIC" type="xs:double" minOccurs="0" />
+              <xs:element name="SCHEME" type="xs:string" minOccurs="0" />
+              <xs:element name="ISCOMP" type="xs:string" minOccurs="0" />
+              <xs:element name="PFLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="HBLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="CMCLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="ASSOLOAN" type="xs:string" minOccurs="0" />
+              <xs:element name="BKACNO" type="xs:string" minOccurs="0" />
+              <xs:element name="BKNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="OLD_BASIC" type="xs:string" minOccurs="0" />
+              <xs:element name="VALID" type="xs:string" minOccurs="0" />
+              <xs:element name="TEMP_ADVANCE" type="xs:string" minOccurs="0" />
+              <xs:element name="SENIORITY" type="xs:long" minOccurs="0" />
+              <xs:element name="ICB_ID" type="xs:long" minOccurs="0" />
+              <xs:element name="OLD_BKACNO" type="xs:string" minOccurs="0" />
+              <xs:element name="BINC" type="xs:string" minOccurs="0" />
+              <xs:element name="NO_CHILD" type="xs:long" minOccurs="0" />
+              <xs:element name="MACHIN_ID" type="xs:long" minOccurs="0" />
+              <xs:element name="DESIG_ID" type="xs:long" minOccurs="0" />
+              <xs:element name="DEPT_ID" type="xs:long" minOccurs="0" />
+              <xs:element name="EMP_ID" type="xs:long" minOccurs="0" />
+              <xs:element name="GRADE" type="xs:long" minOccurs="0" />
+              <xs:element name="AUTOID" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

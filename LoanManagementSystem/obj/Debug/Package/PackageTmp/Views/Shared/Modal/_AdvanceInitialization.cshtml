@@ -1,0 +1,246 @@
+﻿@model LoanManagementSystem.Models.AdvanceInitialization
+
+
+@*Create A Popup Modal With Registration Form For Add Or Edit Student Record*@
+
+<script src="~/scripts/jquery.validate.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 id="ModalTitle"></h4>
+                <a href="#" class="close" style="margin-right: -29px; margin-top: -18px; opacity: 1;" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+                <form id="form_AVD_int">
+                    <fieldset id="SubmitForm">
+                        
+                        <div class="form-group">
+                            @Html.Label("ADVANVE_ID", "Advance Type")
+                            @Html.DropDownListFor(m => m.ADVANCE_ID, new SelectList(ViewBag.advType, "ADVANCE_ID", "ADVANCE_NAME", "---Select Advance---"), new { Class = "form-control", id = "ddlAdvanceType" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("ADVANVE_INIT_NAME", " Advance Initial Name")
+                            @Html.TextBoxFor(m => m.ADVANVE_INIT_NAME, new { @id = "ADVANVE_INIT_NAME", @class = "form-control", @placeholder = "Advance Initial Name*" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("EMPLOYEE_ID", "Employee Name")
+                            @Html.DropDownListFor(m => m.EMPLOYEE_ID, new SelectList(ViewBag.EmpLst, "ID", "NAME"), "---Select Employee---", new { Class = "form-control", id = "EMPLOYEE_ID" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("OFFICE_ID", " Office ID")
+                            @Html.TextBoxFor(m => m.OFFICE_ID, new { @id = "OFFICE_ID", @class = "form-control", @placeholder = "Office Id*" })
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("EMPLOYEE_JOIN_DATE", "Join Date")
+                                @Html.EditorFor(model => model.EMPLOYEE_JOIN_DATE, new { htmlAttributes = new { @id = "EMPLOYEE_JOIN_DATE", @class = "form-control", @placeholder = "Join Date*" } })
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("EMPLOYEE_RETIRE_DATE", "Retire  Date")
+                                @Html.EditorFor(model => model.EMPLOYEE_RETIRE_DATE, new { htmlAttributes = new { @id = "EMPLOYEE_RETIRE_DATE", @class = "form-control", @placeholder = "Retire Date*" } })
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("EMPLOYEE_BASIC", "Basic")
+                                @Html.TextBoxFor(m => m.EMPLOYEE_BASIC, new { @id = "EMPLOYEE_BASIC", @class = "form-control", @placeholder = "Basic*" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("BANK_ACCOUNT", "Bank Account")
+                                @Html.TextBoxFor(model => model.BANK_ACCOUNT, new { @id = "BANK_ACCOUNT", @class = "form-control", @placeholder = "BANK ACCOUNT*" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                @*<a href="#" class="btn btn-primary" id="SaveAvd_int_Record">Save</a>*@
+                                <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                        </div>
+
+
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $("#EMPLOYEE_ID").change(function () {
+
+        var selectedText = $(this).find("option:selected").text();
+
+        var selectedValue = $(this).val();
+
+        // alert("Text: " + selectedText + " Value: " + selectedValue);
+
+        $.getJSON("/Loan/Get_EMPLOYEE_OFFICE_ID", { Id: selectedValue },
+         function (data) {
+             $.each(data, function (i, item) {
+                 //alert(item.EMPLOYEE_ID);
+                 $("#OFFICE_ID").val(item.EMP_ID);
+             });
+
+         });
+
+    });
+
+
+
+
+    $.validator.addMethod("ddlAdvanceType", function (value, element, param) {
+        if (value == '0')
+            return false;
+        else
+            return true;
+    }, "Please select a Advance.");
+
+    $.validator.addMethod("ddlEmployee", function (value, element, param) {
+        if (value == '0') {
+            alert(ss);
+            return false;
+        }
+        else
+            return true;
+    }, "Please select a Employee.");
+
+    $("#form_AVD_int").validate({
+        submitHandler: function () {
+
+            Submit();
+        },
+        rules: {
+            ddlAdvanceType: {
+                ddlAdvanceType: true
+            },
+            EMPLOYEE_BASIC: {
+                required: true,
+
+            },
+            ADVANVE_INIT_NAME: {
+                required: true,
+
+            },
+            ddlEmployee: {
+                required: true,
+                ddlEmployee: true
+            },
+            BANK_ACCOUNT: {
+                required: true,
+
+             },
+            EMPLOYEE_JOIN_DATE: {
+                required: true,
+
+            },
+            EMPLOYEE_RETIRE_DATE: {
+                required: true,
+
+            },
+            OFFICE_ID: {
+                required: true,
+
+            }
+
+        },
+        messages: {
+            EMPLOYEE_BASIC: {
+                required: "Please enter Your Basic"
+            }
+
+        }
+    });
+    function Submit() {
+        var EMPLOYEE_ID = $("#EMPLOYEE_ID").val();
+
+        if (EMPLOYEE_ID != "") {
+            var jsonObjU = [];
+            var AdvanceType = $("#ddlAdvanceType").val();
+            var ADVANVE_INIT_NAME = $("#ADVANVE_INIT_NAME").val();
+            var EMPLOYEE_ID = EMPLOYEE_ID;
+            var EMPLOYEE_BASIC = $("#EMPLOYEE_BASIC").val();
+            var EMPLOYEE_JOIN_DATE = $("#EMPLOYEE_JOIN_DATE").val();
+            var EMPLOYEE_RETIRE_DATE = $("#EMPLOYEE_RETIRE_DATE").val();
+            var BANK_ACCOUNT = $("#BANK_ACCOUNT").val();
+            var OFFICE_ID = $("#OFFICE_ID").val();
+           
+
+            var itemU = {};
+            itemU["ADVANCE_ID"] = AdvanceType;
+            itemU["ADVANVE_INIT_NAME"] = ADVANVE_INIT_NAME;
+            itemU["EMPLOYEE_ID"] = EMPLOYEE_ID;
+            itemU["EMPLOYEE_BASIC"] = EMPLOYEE_BASIC;
+            itemU["EMPLOYEE_JOIN_DATE"] = EMPLOYEE_JOIN_DATE;
+            itemU["EMPLOYEE_RETIRE_DATE"] = EMPLOYEE_RETIRE_DATE;
+            itemU["BANK_ACCOUNT"] = BANK_ACCOUNT;
+            itemU["OFFICE_ID"] = OFFICE_ID;
+
+            
+
+            jsonObjU.push(itemU);
+
+            $.ajax({
+
+                url: '/Loan/AddAdvanceInitialization',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                cache: false,
+                data: JSON.stringify({ AvdInt: JSON.stringify(jsonObjU) }),
+                success: function (s) {
+
+                    if (s == "Success") {
+                        alert(s);
+                        window.location.href = "/Home/index";
+                        $("#MyModal").modal("hide");
+                    }
+                    else {
+
+                        alert("Error");
+                    }
+                }
+            });
+
+
+        }
+        else {
+            alert("Please Select a Employee");
+        }
+
+
+
+
+
+    }
+
+
+    //$("#SaveAvd_int_Record").click(function () {
+    //    alert();
+    //    var data = $("#SubmitForm").serialize();
+    //    $.ajax({
+    //        type: "Post",
+    //        url: "/Loan/AddAdvanceInitialization",
+    //        data: data,
+    //        success: function (result) {
+    //            alert("Success!..");
+    //            window.location.href = "/Home/index";
+    //            $("#MyModal").modal("hide");
+
+    //        }
+    //    })
+    //})
+</script>
+

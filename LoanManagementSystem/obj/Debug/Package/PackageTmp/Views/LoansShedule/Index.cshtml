@@ -1,0 +1,211 @@
+﻿@model LoanManagementSystem.Models.Advance_initialization_details
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Genarate Schedule For Advance</h2>
+<div class="row">
+    <form id="form_AVD_Shedule">
+
+        <div class="form-group">
+            @Html.Label("LOAN_ID", "LOAN ID")
+            @Html.DropDownListFor(m => m.LOAN_ID, new SelectList(ViewBag.advINTDet, "LOAN_ID", "LOAN_ID"), "---Select Disburse---", new { Class = "form-control", id = "LOAN_ID", name = "LOAN_ID" })
+        </div>
+
+      
+        <div class="form-row">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("EMPLOYEE_ID", "EMPLOYEE ID")
+                @Html.TextBoxFor(m => m.EMPLOYEE_ID, new { @id = "EMPLOYEE_ID", @class = "form-control", @placeholder = "ID*", @readonly = "readonly" })
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("ADVANVE_INIT_NAME", " Advance Initial Name")
+                @Html.TextBoxFor(m => m.NAME, new { @id = "ADVANVE_INIT_NAME", @class = "form-control", @placeholder = "Advance Initial Name*", @readonly = "readonly" })
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+            @Html.Label("TIMES_OF_LOAN", " Times of loan")
+            @Html.TextBoxFor(m => m.TIMES_OF_LOAN, new { @id = "TIMES_OF_LOAN", @class = "form-control", @placeholder = "Times of Loan*", @readonly = "readonly" })
+             </div>
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("DISBURSED_AMT", "Disbursed amount")
+                @Html.EditorFor(model => model.DISBURSED_AMT, new { htmlAttributes = new { @id = "DISBURSED_AMT", @class = "form-control", @placeholder = "Disbursed amount*", @readonly = "readonly" } })
+            </div>
+           
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("INSTALLMENT_AMT", "Installment Amount")
+                @Html.TextBoxFor(m => m.INSTALLMENT_AMT, new { @id = "INSTALLMENT_AMT", @class = "form-control", @placeholder = "Installment Amount*", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-row">
+
+            @*<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("INT_RATE", "Interest Rate")
+                @Html.EditorFor(model => model.INT_RATE, new { htmlAttributes = new { @id = "INT_RATE", @class = "form-control", @placeholder = "Interest Rate*",@readonly = "readonly" } })
+            </div>*@
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("NO_OF_YEAR", "No of year")
+                @Html.EditorFor(model => model.NO_OF_YEAR, new { htmlAttributes = new { @id = "NO_OF_YEAR", @class = "form-control", @placeholder = "No of year*", @readonly = "readonly" } })
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                @Html.Label("NO_OF_INSTALLMENT", "No of Installment")
+                @Html.TextBoxFor(m => m.NO_OF_INSTALLMENT, new { @id = "NO_OF_INSTALLMENT", @class = "form-control", @placeholder = "No of Installment*", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                <a href="#" class="btn btn-info" id="GenarateShedule">Genarate Shedule</a> <br /><br />
+
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                <a href="#" class="btn btn-primary" id="SaveAvd_int_Record">Save</a>
+                @*<input type="submit" class="btn btn-primary" id="SaveAvd_int_Record" value="Save" />*@
+            </div>
+         </div>
+       
+</form>
+
+   
+
+</div>
+
+<div class="row">
+    <div class="container" style="display:none;">
+        <img src="~/Content/Images/AjaxLoader.gif" class="loader">
+    </div>
+</div>
+
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table id="GenarateShedule" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+
+                                <th>SL</th>
+                                <th>Start Date</th>
+                                <th>EMI Amount</th>
+                                <th>Interest Rate</th>
+                                <th>Interest Charge</th>
+                                <th>Total Interest</th>
+                                @*<th>Principal Paid</th>*@
+                                <th>TYPE</th>
+                                <th>Principal Balance</th>
+                                <th>Remaining Balance</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody id="SetGenarateShedule">
+                            <tr id="LoadingStatus" style="color:red"></tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $("#LOAN_ID").change(function () {
+
+            var selectedText = $(this).find("option:selected").text();
+
+            var selectedValue = $(this).val();
+
+            // alert("Text: " + selectedText + " Value: " + selectedValue);
+
+            $.getJSON("/LoansShedule/GetAdvIntializationDetails", { Id: selectedValue },
+             function (data) {
+                 $.each(data, function (i, item) {
+                     //alert(item.EMPLOYEE_ID);
+                     $("#ADVANVE_INIT_NAME").val(item.NAME);
+                     $("#EMPLOYEE_ID").val(item.EMPLOYEE_ID);
+                     $("#TIMES_OF_LOAN").val(item.TIMES_OF_LOAN);
+                     $("#DISBURSED_AMT").val(item.DISBURSED_AMT);
+                     $("#DISBURSED_DATE").val(item.DISBURSED_DATE);
+                     $("#INSTALLMENT_AMT").val(item.INSTALLMENT_AMT);
+                     $("#INT_RATE").val(item.INT_RATE);
+                     $("#NO_OF_YEAR").val(item.NO_OF_YEAR);
+                     $("#NO_OF_INSTALLMENT").val(item.NO_OF_INSTALLMENT);
+                 });
+
+             });
+
+        });
+
+        $("#GenarateShedule").click(function () {
+
+
+
+            var selectedValue = $("#LOAN_ID").val();
+
+            // alert("Text: " + selectedText + " Value: " + selectedValue);
+
+            $("#LoadingStatus").html("Loading....");
+            $.get("/LoansShedule/GenerateShedule", { Id: selectedValue }, DataBind);
+            function DataBind(advanceShedule_LIST) {
+                $("#SetGenarateShedule").html(" ");
+                var SetData = $("#SetGenarateShedule");
+                for (var i = 0; i < advanceShedule_LIST.length; i++) {
+
+
+                    var Data = "<tr class='row_" + advanceShedule_LIST[i].DISBURSED_ID + "'>" +
+                        "<td>" + advanceShedule_LIST[i].ADVANCE_SCHEDULE_ID + "</td>" +
+                        "<td>" + advanceShedule_LIST[i].SCHEDULE_DATE + "</td>" +
+                        "<td>" + advanceShedule_LIST[i].INSTALLMENT_AMT.toFixed(2) + "</td>" +
+                        "<td>" + advanceShedule_LIST[i].INTEREST_RATE + "</td>" +
+                        "<td>" + advanceShedule_LIST[i].INTEREST_PAID.toFixed(2) + "</td>" +
+                        "<td>" + advanceShedule_LIST[i].CUMULATIVE_INTEREST.toFixed(2) + "</td>" +
+                        //"<td>" + advanceShedule_LIST[i].PRINCIPAL_PAID.toFixed(2) + "</td>" +
+                         "<td>" + advanceShedule_LIST[i].TYPE + "</td>" +
+                         "<td>" + advanceShedule_LIST[i].BALANCE.toFixed(2) + "</td>" +
+                          "<td>" + advanceShedule_LIST[i].BALANCEWITHINTEREST.toFixed(2) + "</td>" +
+                        "</tr>";
+                    SetData.append(Data);
+                    $("#LoadingStatus").html(" ");
+
+                }
+
+            }
+        })
+
+
+        $("#SaveAvd_int_Record").click(function () {
+
+            var selectedValue = $("#LOAN_ID").val();
+            $(".container").show();
+            if (selectedValue != "") {
+                // alert("Text: " + selectedText + " Value: " + selectedValue);
+
+                $.getJSON("/LoansShedule/SaveAdvanceShedule", { Id: selectedValue },
+                 function (data) {
+                     $(".container").hide();
+                     alert("Save Successfully");
+                     window.location.href = "/LoansShedule/index";
+
+
+                 });
+            }
+            else {
+                alert("Please Select a Disburshment");
+            }
+
+
+
+
+
+        })
+    </script>
+
+

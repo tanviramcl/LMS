@@ -1,0 +1,45 @@
+﻿@model LoanManagementSystem.Models.DisbursedDetails
+@{
+    ViewBag.Title = "GetDisbursedAndPrincipalBalance";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Disbursed And Interest Balance</h2>
+
+<div class="row">
+    <form id="form_AVD_Shedule" action="ExportGetDisbursedAndInterestBalance" method="post">
+
+
+        <div class="form-group">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                @Html.Label("DISBURSED_DATE_FORM", "FORM DATE")
+                @Html.EditorFor(model => model.DISBURSED_DATE_FORM, new { htmlAttributes = new { @id = "DISBURSED_DATE", @class = "form-control", @placeholder = "Disbursed Date*" } })
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                @Html.Label("DISBURSED_DATE_TO", "TO DATE")
+                @Html.EditorFor(model => model.DISBURSED_DATE_TO, new { htmlAttributes = new { @id = "DISBURSED_DATE", @class = "form-control", @placeholder = "Disbursed Date*" } })
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                @Html.Label("LOAN_STATUS", "Loan Status")
+                @Html.DropDownList("LOAN_STATUS", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="Principal", Value = "P" },
+                    new SelectListItem{ Text="Interest", Value = "I" },
+                }, new { Class = "form-control", id = "LOAN_TYPE", })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+
+                @*<a href="@Url.Action("ExportAdvanceShedule")"> Report PDF </a>*@
+                <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+
+
+
+</script>

@@ -1,0 +1,28 @@
+﻿@model LoanManagementSystem.Models.Advance_initialization_details
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Advance Rescheduled</h2>
+
+<div class="row">
+    <form id="form_AVD_Shedule">
+
+        <div class="form-group">
+            @Html.Label("DISBURSED_ID", "Disbursed id")
+            @Html.DropDownListFor(m => m.DISBURSED_ID, new SelectList(ViewBag.advINTDet, "DISBURSED_ID", "DISBURSED_ID"), "---Select Disburse---", new { Class = "form-control", id = "DISBURSED_ID" })
+        </div>
+
+        <div class="form-row">
+           
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                <a href="#" class="btn btn-primary" id="SaveAvd_int_Record">Show</a>
+            </div>
+        </div>
+
+    </form>
+
+
+
+</div>

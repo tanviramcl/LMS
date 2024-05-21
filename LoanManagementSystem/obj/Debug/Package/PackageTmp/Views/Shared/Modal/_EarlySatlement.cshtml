@@ -1,0 +1,240 @@
+﻿@model LoanManagementSystem.Models.EarlySatlementDetails
+@{
+    Layout = null;
+}
+@*Create A Popup Modal With Registration Form For Add Or Edit Student Record*@
+<script src="~/scripts/jquery.validate.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 id="ModalTitle"></h4>
+                <a href="#" class="close" style="margin-right: -29px; margin-top: -18px; opacity: 1;" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+                <form id="form_Early_Sattlement">
+                    <fieldset id="SubmitForm">
+
+                        <div class="form-group">
+                            @Html.Label("DISBURSED_ID", "LOAN ID")
+                            @Html.DropDownListFor(m => m.LOAN_ID, new SelectList(ViewBag.advINTDet, "LOAN_ID", "LOAN_ID"), "---Select Disburse---", new { Class = "form-control", id = "ddlLOAN_ID", name = "LOAN_ID" })
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("EMPLOYEE_ID", "EMPLOYEE ID")
+                                @Html.TextBoxFor(m => m.EMPLOYEE_ID, new { @id = "EMPLOYEE_ID", @class = "form-control", @placeholder = "ID*", @readonly = "readonly" })
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("ADVANVE_INIT_NAME", " Advance Initial Name")
+                                @Html.TextBoxFor(m => m.NAME, new { @id = "ADVANVE_INIT_NAME", @class = "form-control", @placeholder = "Advance Initial Name*", @readonly = "readonly" })
+                                @Html.HiddenFor(m => m.DISBURSED_ID, new { @id = "DISBURSED_ID", @class = "form-control", @placeholder = "DISBURSED ID*" })
+                            </div>
+                           
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("TIMES_OF_LOAN", " Times of loan")
+                                @Html.TextBoxFor(m => m.TIMES_OF_LOAN, new { @id = "TIMES_OF_LOAN", @class = "form-control", @placeholder = "Times of Loan*", @readonly = "readonly" })
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("DISBURSED_AMT", "Disbursed amount")
+                                @Html.EditorFor(model => model.DISBURSED_AMT, new { htmlAttributes = new { @id = "DISBURSED_AMT", @class = "form-control", @placeholder = "Disbursed amount*", @readonly = "readonly" } })
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("TOTAL_PRINCIPAL_AMT", " Total Principal")
+                                @Html.TextBoxFor(m => m.TOTAL_PRINCIPAL_AMT, new { @id = "TOTAL_PRINCIPAL_AMT", @class = "form-control", @placeholder = "Total Principal*", @readonly = "readonly" })
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("TOTAL_INTEREST_AMT", "Total Interest")
+                                @Html.EditorFor(model => model.TOTAL_INTEREST_AMT, new { htmlAttributes = new { @id = "TOTAL_INTEREST_AMT", @class = "form-control", @placeholder = "Total Interest*", @readonly = "readonly" } })
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("DUE_PRINCIPAL", " Due Principal")
+                                @Html.TextBoxFor(m => m.DUE_PRINCIPAL, new { @id = "DUE_PRINCIPAL", @class = "form-control", @placeholder = "Principal*" })
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("DUE_INTEREST", "Due Interest")
+                                @Html.EditorFor(model => model.DUE_INTEREST, new { htmlAttributes = new { @id = "DUE_INTEREST", @class = "form-control", @placeholder = "Interest*" } })
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("CHECK_NO", "CHECK NO")
+                                @Html.EditorFor(model => model.CHECK_NO, new { htmlAttributes = new { @id = "CHECK_NO", @class = "form-control" } })
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                @Html.Label("EARLY_SATALEMENT_DATE", "SATALEMENT DATE")
+                                @Html.EditorFor(model => model.EARLY_SATALEMENT_DATE, new { htmlAttributes = new { @id = "EARLY_SATALEMENT_DATE", @class = "form-control" } })
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                @*<a href="#" class="btn btn-primary" id="SaveAvd_int_Record">Save</a>*@
+                                <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                        </div>
+
+
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+     $("#ddlLOAN_ID").change(function () {
+
+            var selectedText = $(this).find("option:selected").text();
+
+            var selectedValue = $(this).val();
+
+            // alert("Text: " + selectedText + " Value: " + selectedValue);
+
+            $.getJSON("/Loan/GetEarlySatlementInfo", { Id: selectedValue },
+             function (data) {
+                 $.each(data, function (i, item) {
+                     $("#ADVANVE_INIT_NAME").val(item.NAME);
+                     $("#EMPLOYEE_ID").val(item.EMPLOYEE_ID);
+                     $("#DISBURSED_ID").val(item.DISBURSED_ID);
+                     $("#TIMES_OF_LOAN").val(item.TIMES_OF_LOAN);
+                     $("#DISBURSED_AMT").val(item.DISBURSED_AMT);
+                     $("#DISBURSED_DATE").val(item.DISBURSED_DATE);
+                     $("#INSTALLMENT_AMT").val(item.INSTALLMENT_AMT);
+                     $("#INT_RATE").val(item.INT_RATE);
+                     $("#NO_OF_YEAR").val(item.NO_OF_YEAR);
+                     $("#NO_OF_INSTALLMENT").val(item.NO_OF_INSTALLMENT);
+                     $("#TOTAL_PRINCIPAL_AMT").val(item.TOTAL_PRINCIPAL_AMT);
+                     $("#TOTAL_INTEREST_AMT").val(item.TOTAL_INTEREST_AMT);
+                 });
+
+             });
+
+     });
+
+
+
+     $.validator.addMethod("TIMES_OF_LOAN", function (value, element, param) {
+         if (value == '0')
+             return false;
+         else
+             return true;
+     }, "Please select Times of Loan.");
+
+
+
+
+     $("#form_Early_Sattlement").validate({
+         submitHandler: function () {
+
+             Submit();
+         },
+         rules: {
+             DUE_PRINCIPAL: {
+                 required: true,
+                 number: true
+
+             },
+             DUE_INTEREST: {
+                 required: true,
+                 number: true
+             },
+             CHECK_NO: {
+                 required: true,
+                 number: true
+                 },
+             EARLY_SATALEMENT_DATE: {
+                 required: true
+
+             }
+
+         },
+         messages: {
+             DUE_PRINCIPAL: {
+                 required: "Please enter  amount "
+             },
+             DUE_INTEREST: {
+                 required: "Please enter amount"
+             }
+
+         }
+     });
+     function Submit() {
+         
+             var jsonObjU = [];
+
+             var DISBURSED_ID = $("#DISBURSED_ID").val();
+             var DUE_PRINCIPAL = $("#DUE_PRINCIPAL").val();
+             var DUE_INTEREST = $("#DUE_INTEREST").val();
+             var EMPLOYEE_ID = $("#EMPLOYEE_ID").val();
+             var EARLY_SATALEMENT_DATE = $("#EARLY_SATALEMENT_DATE").val();
+             var LOAN_ID = $("#ddlLOAN_ID").val();
+             var CHECK_NO = $("#CHECK_NO").val();
+             
+
+             var itemU = {};
+             itemU["DISBURSED_ID"] = DISBURSED_ID;
+             itemU["DUE_PRINCIPAL"] = DUE_PRINCIPAL;
+             itemU["DUE_INTEREST"] = DUE_INTEREST;
+             itemU["EMPLOYEE_ID"] = EMPLOYEE_ID;
+             itemU["EARLY_SATALEMENT_DATE"] = EARLY_SATALEMENT_DATE;
+             itemU["LOAN_ID"] = LOAN_ID;
+             itemU["CHECK_NO"] = CHECK_NO;
+             
+
+
+             jsonObjU.push(itemU);
+
+             $.ajax({
+
+                 url: '/Loan/AddEarlySatlement',
+                 type: 'POST',
+                 dataType: 'json',
+                 contentType: 'application/json',
+                 cache: false,
+                 data: JSON.stringify({ erlyStlDetails: JSON.stringify(jsonObjU) }),
+                 success: function (s) {
+
+                     if (s == "Success") {
+                         alert(s);
+                         window.location.href = "/Home/index";
+                         $("#MyModal").modal("hide");
+                     }
+                     else {
+
+                         alert("Error");
+                     }
+                 }
+             });
+
+
+        
+
+
+
+     }
+
+</script>
+

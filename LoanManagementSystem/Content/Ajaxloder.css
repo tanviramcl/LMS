@@ -1,0 +1,31 @@
+﻿.container {
+     /*Absolute positioning will now be relative to this tag*/
+     position:relative; 
+
+     /*Arbitrary Height*/
+     height:500px;
+     width:500px;
+
+     /*border to show container*/
+    
+ }
+
+.loader {
+    /*Allow top, left, right, bottom 
+    to be set relative to container*/
+    position: absolute;
+
+    /*Set edges of tag so margin auto knows the max boundry*/
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height:200px;
+    width:200px;
+    /*Allows the use of margin auto*/
+    display: block;
+
+    /*Horizontally and vertically centered
+    (Display block will fill remaining margin space equally)*/
+    margin: auto;
+}
